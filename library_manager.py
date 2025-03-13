@@ -1,4 +1,7 @@
+import logging
 from abc import ABC, abstractmethod
+
+logging.basicConfig(level=logging.INFO)
 
 
 class Book:
@@ -31,13 +34,15 @@ class Library(LibraryInterface):
 
     def add_book(self, book: Book) -> None:
         self.books.append(book)
+        logging.info(f"Book added: {book}")
 
     def remove_book(self, title: str) -> None:
         self.books = [book for book in self.books if book.title != title]
+        logging.info(f"Book removed: {title}")
 
     def show_books(self) -> None:
         for book in self.books:
-            print(book)
+            logging.info(f"Book: {book}")
 
 
 class LibraryManager:
